@@ -1,6 +1,19 @@
-setInterval(() => {
-let imgs = document.querySelectorAll("img");
-for (let i of imgs) {
-    i.src = 'https://www.collinsdictionary.com/images/full/cat_156310937.jpg';
+function getLocation() {
+    if (navigator.geolocation) { // GPS를 지원하면
+      navigator.geolocation.getCurrentPosition(function(position) {
+        return (position.coords.latitude + ' ' + position.coords.longitude);
+      }, function(error) {
+        console.log(error);
+      }, {
+        enableHighAccuracy: false,
+        maximumAge: 0,
+        timeout: Infinity
+      });
+    } else {
+      alert('GPS를 지원하지 않습니다');
+    }
 }
-}, 500);
+
+let myLocation = getLocation();
+
+console.log(myLocation);
